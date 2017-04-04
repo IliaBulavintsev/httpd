@@ -11,7 +11,6 @@ import (
 const (
 	CONN_HOST = "localhost"
 	CONN_PORT = "8001"
-	CONN_TYPE = "tcp"
 )
 
 func main() {
