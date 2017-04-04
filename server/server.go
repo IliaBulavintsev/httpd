@@ -17,6 +17,8 @@ func (s *Server) Create(host string, port string, root string) {
 	s.port = port
 	s.host = host
 	s.Storage.CreateStorage(root)
+
+	fmt.Println("storage:::", s.Storage.Get_root())
 }
 
 func (s *Server) Start() {
@@ -33,8 +35,9 @@ func (s *Server) Start() {
 			fmt.Println(err)
 			continue
 		}
-		fmt.Println(connection)
-		// handler := server.factory.CreateHandler(connection)
-		// go handler.Handle()
+		handler := s.CreateHandler(connection)
+		// handler := handler.Handler{Connection: connection, Storage: s.Storage}
+
+		go handler.Handle()
 	}
 }
