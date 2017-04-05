@@ -10,15 +10,13 @@ import (
 type Server struct {
 	port string
 	host string
-	handler.Storage
+	handler.Factory
 }
 
 func (s *Server) Create(host string, port string, root string) {
 	s.port = port
 	s.host = host
-	s.Storage.CreateStorage(root)
-
-	fmt.Println("storage:::", s.Storage.Get_root())
+	s.Factory.CreateFactory(root)
 }
 
 func (s *Server) Start() {
@@ -36,7 +34,7 @@ func (s *Server) Start() {
 			continue
 		}
 		handler := s.CreateHandler(connection)
-		// handler := handler.Handler{Connection: connection, Storage: s.Storage}
+		fmt.Println("CREATE Handler!!\n\n")
 
 		go handler.Handle()
 	}

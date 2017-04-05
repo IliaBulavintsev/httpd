@@ -15,7 +15,7 @@ type Handler struct {
 	Connection net.Conn
 	request    *request
 	response   *response
-	Storage    *Storage
+	Factory    *Factory
 }
 
 func (handler *Handler) get_path() string {
@@ -74,7 +74,7 @@ func (handler *Handler) process_request() {
 
 //preproccess path and check file errors
 func (handler *Handler) preprocess_path() {
-	handler.set_path(handler.Storage.root + handler.get_path())
+	handler.set_path(handler.Factory.root + handler.get_path())
 	file_info := handler.check_path(false)
 	if file_info != nil && file_info.IsDir() {
 		handler.set_path(handler.get_path() + INDEX_FILE)
@@ -95,7 +95,7 @@ func (handler *Handler) check_path(is_dir bool) os.FileInfo {
 		} else {
 			handler.set_status("forbidden")
 		}
-	} else if !strings.Contains(clear_path, handler.Storage.root) {
+	} else if !strings.Contains(clear_path, handler.Factory.root) {
 		handler.set_status("forbidden")
 	}
 	return info
@@ -136,7 +136,7 @@ func (handler *Handler) get_content_type() string {
 }
 
 func (handler *Handler) clear() {
-	handler.Storage = nil
+	handler.Factory = nil
 	handler.Connection.Close()
 }
 

@@ -16,7 +16,7 @@ const (
 func main() {
 
 	ROOT := flag.String("r", "/home/ilia/go/src/github.com/iliabulavintsev/server/", " dir Root")
-	NUM_CPU := flag.Int("c", 1, "num of cpu")
+	NUM_CPU := flag.Int("c", runtime.NumCPU(), "num of cpu")
 
 	flag.Parse()
 
