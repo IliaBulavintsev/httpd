@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net"
 
-	"../handler"
+	"github.com/iliabulavintsev/httpd/handler"
 )
 
 type Server struct {

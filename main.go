@@ -4,8 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"runtime"
-
-	"./server"
+	"github.com/iliabulavintsev/httpd/server"
 )
 
 const (
@@ -15,7 +14,7 @@ const (
 
 func main() {
 
-	ROOT := flag.String("r", "/home/ilia/go/src/github.com/iliabulavintsev/server/", " dir Root")
+	ROOT := flag.String("r", "/home/ilia/go/src/github.com/iliabulavintsev/httpd/", " dir Root")
 	NUM_CPU := flag.Int("c", runtime.NumCPU(), "num of cpu")
 
 	flag.Parse()
